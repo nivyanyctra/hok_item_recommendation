@@ -47,7 +47,7 @@ role_base_items = {
     "Marksman": ["Boots of Dexterity", "Shadow Ripper", "Bloodweeper"],
     "Support": ["Holy Grail", "Splendor", "Dawnlight"],
     "Tank": ["Boots of Resistance", "Glacial Buckler", "Axe of Torment"],
-    "Unknown": ["Boots of Fortitude", "Default Sword"]
+    "Unknown": ["Boots of Fortitude"]
 }
 
 counter_items = {
