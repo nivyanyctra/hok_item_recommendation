@@ -1,5 +1,3 @@
-# inference_engine.py: Mesin Inferensi (Forward Chaining Kompleks)
-
 from knowledge_base import hero_roles, physical_roles, role_base_items, counter_items, rules, item_details
 
 def calculate_total_stats(full_build):
@@ -11,12 +9,10 @@ def calculate_total_stats(full_build):
     return total
 
 def forward_chaining(enemy_heroes, my_hero):
-    # Normalisasi input
     my_hero = my_hero.strip().title().replace(" ", "")
     enemy_heroes = [e.strip().title().replace(" ", "") for e in enemy_heroes if e]
     enemy_roles = [hero_roles.get(e, "Unknown") for e in enemy_heroes]
 
-    # Hitung counts (fakta awal)
     counts = {"phys": 0, "magic": 0, "tank": 0, "support": 0}
     for role in enemy_roles:
         if role in physical_roles:
@@ -28,7 +24,6 @@ def forward_chaining(enemy_heroes, my_hero):
         elif role == "Support":
             counts["support"] += 1
 
-    # Apply rules (forward chaining)
     needs = []
     explanations = []
     for rule in rules:
@@ -36,33 +31,25 @@ def forward_chaining(enemy_heroes, my_hero):
             needs.append(rule["need"])
             explanations.append(rule["exp"])
 
-    # Dapatkan counter items
     rec_items = []
     for need in needs:
-        rec_items.extend(counter_items.get(need, [])[:2])  # Top 2 per need
+        rec_items.extend(counter_items.get(need, [])[:2])
 
-    # Base items berdasarkan role hero kamu
     my_role = hero_roles.get(my_hero, "Unknown")
     base_items = role_base_items.get(my_role, [])
 
-    # Full build: Unique, max 6 items
     full_build = list(set(base_items + rec_items))[:6]
 
-    # Hitung total stats
     total_stats = calculate_total_stats(full_build)
 
-    # Score effectiveness (sederhana: poin berdasarkan match)
     score = 0
     if counts["phys"] >= 3:
         score += total_stats["Physical Defense"] / 100
     if counts["magic"] >= 2:
         score += total_stats["Magical Defense"] / 100
-    # dst.
 
-    # Details untuk setiap item di build
     build_details = [item_details.get(item, {"category": "Unknown", "stats": {}, "passive": "No info", "image_url": ""}) for item in full_build]
 
-    # Trace untuk explanation facility
     trace = f"Fakta Awal: Counts = {counts}\nRoles Musuh: {enemy_roles}\nRules Terpicu: {', '.join(explanations) or 'Tidak ada'}\nTotal Stats: {total_stats}\nEffectiveness Score: {score:.2f}"
 
     return {

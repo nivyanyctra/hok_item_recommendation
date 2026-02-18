@@ -1,5 +1,3 @@
-# knowledge_base.py: Basis Pengetahuan HoK - Diupdate 2026
-
 hero_roles = {
     # Assassin
     "Arke": "Assassin", "Athena": "Assassin", "Cirrus": "Assassin", "Feyd": "Assassin",
@@ -32,10 +30,8 @@ hero_roles = {
 
     # Tank
     "Ata": "Tank", "Lian Po": "Tank", "Xiang Yu": "Tank", "Flowborn": "Tank", "Zhang Fei": "Tank"
-    # Tambah lebih banyak jika perlu dari tier list terbaru
 }
 
-# Sort keys untuk select option (alfabetis)
 all_heroes = sorted(hero_roles.keys())
 
 physical_roles = ["Assassin", "Fighter", "Marksman"]
@@ -418,7 +414,6 @@ item_details = {
         "passive": "Grants 3% Movement Speed and boosts attack stats by 20",
         "image_url": "https://zilliongamer.com/uploads/honor-of-kings/items/128x128/stormchaser.jpg"
     },
-    # Tambah item lain jika butuh
 }
 
 def get_hero_list():

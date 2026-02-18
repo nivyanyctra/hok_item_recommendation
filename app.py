@@ -1,5 +1,3 @@
-# app.py: Aplikasi Web Flask untuk Sistem Pakar HoK (Kompleks)
-
 from flask import Flask, render_template, request
 from inference_engine import forward_chaining
 from knowledge_base import get_hero_list
@@ -13,7 +11,7 @@ def index():
     if request.method == 'POST':
         my_hero = request.form['my_hero']
         enemy_heroes = [
-            request.form.get('enemy1', ''),  # Allow empty for flexibility
+            request.form.get('enemy1', ''),  
             request.form.get('enemy2', ''),
             request.form.get('enemy3', ''),
             request.form.get('enemy4', ''),
